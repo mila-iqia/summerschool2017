@@ -1,7 +1,6 @@
 import numpy as np
 from theano import function
 from theano import tensor as T
-from theano import config
 
 a = T.vector()
 b = T.log(a)
