@@ -179,6 +179,9 @@ TSWLatexianTemp*
 # KBibTeX
 *~[0-9]*
 
+# vim
+*.swp
+
 # ipynb checkpoints
 .ipynb_checkpoints
 
