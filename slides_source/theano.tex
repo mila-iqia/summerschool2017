@@ -335,11 +335,11 @@ monitor = theano.function([x, y], [out, C])
 y_val = np.random.uniform(size=3)
 print(monitor(x_val, y_val))
 # -> [array([ 0.9421594 ,  0.73722395,  0.67606977]),
-#     array(0.6191236997823024)]
+#     array(0.6137821438190066)]
 
 error = theano.function([out, y], C)
 print(error([0.942, 0.737, 0.676], y_val))
-# -> array(0.6002210054210885)
+# -> array(0.613355628529845)
   \end{minted}
 \end{frame}
 
@@ -354,7 +354,7 @@ print(b.get_value())
 # -> [ 1.  1.  1.]
 train(x_val, y_val)
 print(b.get_value())
-# -> [ 0.9967082   0.99340064  0.97245715]
+# -> [ 0.99639999  0.97684097  0.98318412]
   \end{minted}
   \begin{itemize}
     \item Variables \verb|W| and \verb|b| are {\bf implicit inputs}
