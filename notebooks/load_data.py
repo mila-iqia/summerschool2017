@@ -60,5 +60,4 @@ def load_data(dataset):
         data_y = data_y.astype('int32')
         return data_x, data_y
 
-    return [cast_dataset(data, shared=shared)
-            for data in (train_set, valid_set, test_set)]
+    return [cast_dataset(data) for data in (train_set, valid_set, test_set)]
