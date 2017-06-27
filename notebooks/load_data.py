@@ -5,14 +5,11 @@ import numpy as np
 import theano
 
 
-def load_data(dataset, shared=True):
+def load_data(dataset):
     ''' Loads the dataset
 
     :type dataset: string
     :param dataset: the path to the dataset (here MNIST)
-
-    :type shared: bool
-    :param shared: return the arrays of the dataset as shared variables
     '''
 
     #############
@@ -57,22 +54,11 @@ def load_data(dataset, shared=True):
     # the number of rows in the input. It should give the target
     # corresponding to the example with the same index in the input.
 
-    def cast_dataset(data_xy, shared=True, borrow=True):
-        """ Function that casts the dataset, potentially as a shared var.
-
-        The reason we store our dataset in shared variables is to allow
-        Theano to copy it into the GPU memory (when code is run on GPU).
-        Since copying data into the GPU is slow, copying a minibatch everytime
-        is needed (the default behaviour if the data is not in a shared
-        variable) would lead to a large decrease in performance.
-        """
+    def cast_dataset(data_xy):
+        """Function that casts the target part of dataset to int32"""
         data_x, data_y = data_xy
         data_y = data_y.astype('int32')
-        if shared:
-            data_x = theano.shared(data_x, borrow=borrow)
-            data_y = theano.shared(data_y, borrow=borrow)
         return data_x, data_y
 
     return [cast_dataset(data, shared=shared)
             for data in (train_set, valid_set, test_set)]
-
